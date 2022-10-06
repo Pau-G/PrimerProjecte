@@ -29,4 +29,10 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+
+    [HttpPost]
+    public void Post([FromBody]WeatherForecast forecast)
+    {
+        _logger.LogInformation(forecast.ToString());
+    }
 }
