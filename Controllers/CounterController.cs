@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Metrics;
 
 namespace PrimerProjecte.Controllers;
 
@@ -6,21 +7,16 @@ namespace PrimerProjecte.Controllers;
 [Route("[controller]")]
 public class CounterController : ControllerBase
 {
-    private readonly ICounterService<CounterController> _counter;
+    private readonly ICounterService counterService;
 
-    public CounterController(ICounterService<CounterController> counter)
+    public CounterController(ICounterService counterService)
     {
-        _counter = counter;
+        this.counterService = counterService;
     }
 
     [HttpGet]
-    public ICounterService<Counter> get()
+    public int GetCount()
     {
-        return GetAndIncrement();
-    }
-
-    public GetAndIncrement()
-    {
-        return _counter++;
+        return counterService.getAddIncrement();
     }
 }
